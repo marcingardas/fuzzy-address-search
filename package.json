@@ -1,0 +1,28 @@
+{
+  "name": "fuzzy-address-search",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test-script": "npx ts-node -r dotenv/config ./test-script.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.1",
+    "dotenv": "^16.4.7",
+    "jest": "^29.7.0",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.26.8",
+    "babel-jest": "^29.7.0",
+    "node-fetch": "^3.3.2",
+    "ts-jest": "^29.2.5"
+  }
+}

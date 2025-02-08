@@ -2,7 +2,7 @@
 
 ## Overview
 
-Fuzzy Address Search is a package that allows you to search (fuzzy) for addresses. It currently only supports TomTom API for address search and only supports searching for addresses in Australia.
+Fuzzy Address Search is a package that allows you to fuzzy search for addresses. It currently only supports TomTom API for address search and only supports searching for addresses in Australia.
 
 ## Try out this package before installing it
 

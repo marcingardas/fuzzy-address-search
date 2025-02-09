@@ -53,9 +53,9 @@ describe("TomTomIntegrationParser", () => {
   });
 
   it("should throw an error when parsing an invalid response", () => {
-    const invalidResponse: any = {
+    const invalidResponse = {
       results: null,
-    };
+    } as unknown as TomTomFuzzySearchAddressResponse;
 
     expect(() => {
       parser.parseFuzzySearchAddressResponse(invalidResponse);

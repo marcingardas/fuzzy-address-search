@@ -20,14 +20,16 @@ describe("fuzzySearchAddressService", () => {
   });
 
   it("should throw an error if query is not a string", async () => {
-    await expect(fuzzySearchAddress(123 as any)).rejects.toThrow(
+    await expect(fuzzySearchAddress(123 as unknown as string)).rejects.toThrow(
       new BadRequestError("Query must be a string.")
     );
   });
 
   it("should throw an error if country type is not supported by the library", async () => {
     await expect(
-      fuzzySearchAddress("test query", ["INVALID_COUNTRY" as any])
+      fuzzySearchAddress("test query", [
+        "INVALID_COUNTRY" as unknown as CountryType,
+      ])
     ).rejects.toThrow(
       new ConfigurationError("Country type not supported by this library")
     );

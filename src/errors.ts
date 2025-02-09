@@ -6,3 +6,14 @@ export class NotFoundError extends Error {}
 export class InternalServerError extends Error {}
 export class ServiceUnavailableError extends Error {}
 export class UnexpectedError extends Error {}
+
+export const errors = {
+  ConfigurationError,
+  ParsingError,
+  BadRequestError,
+  UnauthorizedError,
+  NotFoundError,
+  InternalServerError,
+  ServiceUnavailableError,
+  UnexpectedError,
+};

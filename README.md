@@ -22,6 +22,8 @@ You can install your package for your project by running:
 npm install fuzzy-address-search
 ```
 
+Note: the package has been published yet so this is not possible yet.
+
 ## Usage
 
 Here is the basic example of how to use this package:
@@ -39,12 +41,38 @@ initialise(IntegrationType.TOMTOM, process.env.TEST_TOM_TOM_API_KEY);
 const addresses: Address[] = await fuzzySearchAddress("1 George St, Sydney");
 ```
 
+## Error handling
+
+Here is an example of how to handle a `ConfigurationError` (one of the possible errors thrown by the package):
+
+```typescript
+import { fuzzySearchAddress, errors } from "./src/index";
+
+try {
+  const addresses = await fuzzySearchAddress("1 George St, Sydney");
+} catch (error) {
+  if (error instanceof ConfigurationError) {
+    console.error("There was a configuration error:", error.message);
+  }
+}
+```
+
+You can see a complete list of possible errors in the [API section](#errors).
+
 ## Tests
 
 To run the tests:
 
 ```bash
 npm run test
+```
+
+## Linter
+
+To run the linter:
+
+```bash
+npm run lint
 ```
 
 ## API
@@ -119,34 +147,18 @@ const addresses: Address[] = await fuzzySearchAddress("1 George St, Sydney");
 
 ### Errors
 
-**`ConfigurationError`**
+**`ConfigurationError`**: Thrown when there is a configuration issue, such as missing or invalid integration type.
 
-Thrown when there is a configuration issue, such as missing or invalid integration type.
+**`ParsingError`**: Thrown when there is an error parsing the response from the integration.
 
-**`ParsingError`**
+**`BadRequestError`**: Thrown when the request to the integration API is invalid.
 
-Thrown when there is an error parsing the response from the integration.
+**`UnauthorizedError`**: Thrown when the request to the integration API is unauthorized.
 
-**`BadRequestError`**
+**`NotFoundError`**: Thrown when the requested resource is not found.
 
-Thrown when the request to the integration API is invalid.
+**`InternalServerError`**: Thrown when there is an internal server error in the integration API.
 
-**`UnauthorizedError`**
+**`ServiceUnavailableError`**: Thrown when the integration API service is unavailable.
 
-Thrown when the request to the integration API is unauthorized.
-
-**`NotFoundError`**
-
-Thrown when the requested resource is not found.
-
-**`InternalServerError`**
-
-Thrown when there is an internal server error in the integration API.
-
-**`ServiceUnavailableError`**
-
-Thrown when the integration API service is unavailable.
-
-**`UnexpectedError`**
-
-Thrown when an unexpected error occurs, when fetching data from the integration API.
+**`UnexpectedError`**: Thrown when an unexpected error occurs, when fetching data from the integration API.

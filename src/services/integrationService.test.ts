@@ -17,15 +17,15 @@ describe("integrationService", () => {
   });
 
   it("should throw an error if integration type is not provided", () => {
-    expect(() => initialise(null as any, apiKey)).toThrow(
-      new ConfigurationError("Integration type is required")
-    );
+    expect(() =>
+      initialise(null as unknown as IntegrationType, apiKey)
+    ).toThrow(new ConfigurationError("Integration type is required"));
   });
 
   it("should throw an error if integration type is invalid", () => {
-    expect(() => initialise("INVALID_TYPE" as any, apiKey)).toThrow(
-      new ConfigurationError("Integration type is not valid")
-    );
+    expect(() =>
+      initialise("INVALID_TYPE" as unknown as IntegrationType, apiKey)
+    ).toThrow(new ConfigurationError("Integration type is not valid"));
   });
 
   it("should throw an error if getIntegration is called before initialise", () => {

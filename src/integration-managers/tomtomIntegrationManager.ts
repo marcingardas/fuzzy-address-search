@@ -1,3 +1,11 @@
+import {
+  BadRequestError,
+  InternalServerError,
+  NotFoundError,
+  ServiceUnavailableError,
+  UnauthorizedError,
+  UnexpectedError,
+} from "../errors";
 import { BaseIntegrationParser } from "../integration-parsers/baseIntegrationParser";
 import { TomTomIntegrationParser } from "../integration-parsers/tomtomIntegrationParser";
 import { TomTomFuzzySearchAddressResponse } from "../integration-types/tomtomIntegrationTypes";
@@ -28,8 +36,21 @@ export class TomTomIntegrationManager extends BaseIntegrationManager {
       )}.json?key=${this.apiKey}&countrySet=${countries.join(",")}`
     );
 
-    if (response.status !== 200) {
-      throw new Error("Failed to fetch data");
+    switch (response.status) {
+      case 400:
+        throw new BadRequestError("Bad request");
+      case 401:
+        throw new UnauthorizedError("Unauthorized");
+      case 404:
+        throw new NotFoundError("Not found");
+      case 500:
+        throw new InternalServerError("Internal server error");
+      case 503:
+        throw new ServiceUnavailableError("Service unavailable");
+      default:
+        if (response.status !== 200) {
+          throw new UnexpectedError("Unknown error fetching data");
+        }
     }
 
     const parsedResponse: TomTomFuzzySearchAddressResponse =

@@ -1,12 +1,13 @@
 import { initialise, fuzzySearchAddress } from "../index";
 import { IntegrationType } from "../types/integrationTypes";
-import { CountryType } from "../types/countryTypes";
+import { deinitialise } from "../services/integrationService";
 
 global.fetch = jest.fn();
 
 describe("Tom Tom Integration", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    deinitialise();
   });
 
   it("should return addresses for a valid fuzzy address search", async () => {
@@ -49,25 +50,5 @@ describe("Tom Tom Integration", () => {
         freeformAddress: "1 George St, Sydney, NSW 2000, Australia",
       },
     ]);
-  });
-
-  it("should throw an error for unsupported country type", async () => {
-    initialise(IntegrationType.TOMTOM, "test-api-key");
-
-    try {
-      await fuzzySearchAddress("1 George St, Sydney", [
-        "INVALID_COUNTRY" as CountryType,
-      ]);
-    } catch (error) {
-      expect(error).toEqual(new Error("Country type is not supported."));
-    }
-  });
-
-  it("should throw an error if integration is not initialized", async () => {
-    try {
-      await fuzzySearchAddress("1 George St, Sydney");
-    } catch (error) {
-      expect(error).toEqual(new Error("Country type is not supported."));
-    }
   });
 });

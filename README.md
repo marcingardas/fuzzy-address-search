@@ -119,34 +119,34 @@ const addresses: Address[] = await fuzzySearchAddress("1 George St, Sydney");
 
 ### Errors
 
-#### ConfigurationError
+**`ConfigurationError`**
 
 **Description:** Thrown when there is a configuration issue, such as missing or invalid integration type.
 
-#### ParsingError
+**`ParsingError`**
 
 **Description:** Thrown when there is an error parsing the response from the integration.
 
-#### BadRequestError
+**`BadRequestError`**
 
 **Description:** Thrown when the request to the integration API is invalid.
 
-#### UnauthorizedError
+**`UnauthorizedError`**
 
 **Description:** Thrown when the request to the integration API is unauthorized.
 
-#### NotFoundError
+**`NotFoundError`**
 
 **Description:** Thrown when the requested resource is not found.
 
-#### InternalServerError
+**`InternalServerError`**
 
 **Description:** Thrown when there is an internal server error in the integration API.
 
-#### ServiceUnavailableError
+**`ServiceUnavailableError`**
 
 **Description:** Thrown when the integration API service is unavailable.
 
-#### UnexpectedError
+**`UnexpectedError`**
 
 **Description:** Thrown when an unexpected error occurs, when fetching data from the integration API.

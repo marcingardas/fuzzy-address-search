@@ -7,5 +7,6 @@
 
 ### What I'd do given more time
 
-- build CI and CD pipelines to automate the testing and package deployment process
-- add pagination to support returning long lists of results
+- publish the package to NPM
+- build CD pipelines to automate package publishing process
+- add pagination to support returning long lists of results from 3rd party APIs
